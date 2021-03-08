@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 dotenv.config();
 
-const PORT = process.env.POST || 3000;
+const PORT = process.env.PORT || 3000;
 const mongoClient = mongodb.MongoClient;
 const DB_URL =
 	'mongodb+srv://admin-vishnu:vishnu123@vishnu.1nuon.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
