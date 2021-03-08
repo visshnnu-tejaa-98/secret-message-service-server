@@ -13,7 +13,9 @@ dotenv.config();
 
 const PORT = process.env.POST || 3000;
 const mongoClient = mongodb.MongoClient;
-const DB_URL = 'mongodb://127.0.0.1:27017';
+const DB_URL =
+	'mongodb+srv://admin-vishnu:vishnu123@vishnu.1nuon.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' ||
+	'mongodb://127.0.0.1:27017';
 const EMAIL = process.env.EMAIL;
 const PASSWORD = process.env.PASSWORD;
 
@@ -34,7 +36,7 @@ const mailMessage = (url) => {
 	console.log(url);
 	return `<p>Hi, This is Ravan from Gaming World, <br />
       You have a SECRET MESSAGE waiting for only you to open. <br />
-      <a href='${url}' target="_blank">${url}</a> <br/>   
+      <a href='${url}' target="_blank">click here to see SECRET message</a> <br/>   
       </p>`;
 };
 
