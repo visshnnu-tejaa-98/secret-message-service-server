@@ -13,8 +13,7 @@ dotenv.config();
 const PORT = process.env.POST || 3000;
 const mongoClient = mongodb.MongoClient;
 const DB_URL =
-	'mongodb+srv://admin-vishnu:vishnu123@vishnu.1nuon.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' ||
-	'mongodb://127.0.0.1:27017';
+	'mongodb+srv://admin-vishnu:vishnu123@vishnu.1nuon.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const EMAIL = process.env.EMAIL;
 const PASSWORD = process.env.PASSWORD;
 
