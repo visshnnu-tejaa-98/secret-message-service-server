@@ -4,7 +4,6 @@ const bcryptjs = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const { request } = require('express');
 
 const app = express();
 app.use(express.json());
