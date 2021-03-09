@@ -90,6 +90,7 @@ app.get('/message-by-id/:id', async (req, res) => {
 
 app.delete('/delete-message', async (req, res) => {
 	try {
+		console.log(req.body);
 		const client = await mongoClient.connect(DB_URL);
 		const db = client.db('secrets');
 		const secret = await db.collection('secrets').findOne({ key: req.body.secretKey });
