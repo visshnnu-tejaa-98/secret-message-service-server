@@ -57,6 +57,7 @@ app.post('/create-message', async (req, res) => {
 		await db.collection('secrets').insertOne(data);
 		const result = await db.collection('secrets').findOne({ key: data.key });
 		console.log(result);
+		console.log(mailData, transporter);
 		const usrMailUrl = `${req.body.targetUrl}?rs=${result._id}`;
 		mailData.to = req.body.targetMail;
 		mailData.html = mailMessage(usrMailUrl);
