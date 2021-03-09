@@ -57,7 +57,7 @@ app.post('/create-message', async (req, res) => {
 		await db.collection('secrets').insertOne(data);
 		const result = await db.collection('secrets').findOne({ key: data.key });
 		console.log(result);
-		console.log(mailData, transporter);
+		// console.log(mailData, transporter);
 		const usrMailUrl = `${req.body.targetUrl}?rs=${result._id}`;
 		mailData.to = req.body.targetMail;
 		mailData.html = mailMessage(usrMailUrl);
@@ -80,7 +80,11 @@ app.get('/message-by-id/:id', async (req, res) => {
 		const client = await mongoClient.connect(DB_URL);
 		const db = client.db('secrets');
 		const result = await db.collection('secrets').findOne({ _id: mongodb.ObjectID(req.params.id) });
-		res.json({ message: 'Message has been fetched successfully', result: result.message });
+		if (!result) {
+			res.json({ message: 'null' });
+		} else {
+			res.json({ message: 'Message has been fetched successfully', result: result.message });
+		}
 		client.close();
 	} catch (error) {
 		console.log(error);
@@ -90,11 +94,9 @@ app.get('/message-by-id/:id', async (req, res) => {
 
 app.delete('/delete-message', async (req, res) => {
 	try {
-		console.log(req.body);
 		const client = await mongoClient.connect(DB_URL);
 		const db = client.db('secrets');
 		const secret = await db.collection('secrets').findOne({ key: req.body.secretKey });
-		console.log(secret);
 		if (secret) {
 			const compare = await bcryptjs.compare(req.body.password, secret.password);
 			if (compare) {
@@ -104,7 +106,7 @@ app.delete('/delete-message', async (req, res) => {
 				res.json({ message: 'Incorrect Password' });
 			}
 		} else {
-			res.json({ message: 'Secret key not found' });
+			res.json({ message: 'Can not Fetch' });
 		}
 		client.close();
 	} catch (error) {
